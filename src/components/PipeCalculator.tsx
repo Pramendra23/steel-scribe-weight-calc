@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { PipeData, Unit, WeightUnit, materials } from "../types/calculator";
 import { calculatePipeWeight, convertWeight, formatWeight, generatePDF } from "../utils/calculationUtils";
-import { toast } from "./ui/sonner";
+import { toast } from "sonner";
 import { FilePlus, FileDown, Trash2, Calculator, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { v4 as uuidv4 } from "uuid";
