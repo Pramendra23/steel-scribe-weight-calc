@@ -85,8 +85,13 @@ export function PipeCalculator() {
       return;
     }
     
-    generatePDF(pipes, weightUnit);
-    toast.success("PDF report generated successfully");
+    try {
+      generatePDF(pipes, weightUnit);
+      toast.success("PDF report generated successfully");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      toast.error("Failed to generate PDF report");
+    }
   };
 
   return (

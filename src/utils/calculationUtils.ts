@@ -1,7 +1,6 @@
-
 import { PipeData, Unit, WeightUnit, unitConversionMap, weightConversionMap, materials } from "../types/calculator";
 import { jsPDF } from "jspdf";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 
 // Convert value from any unit to meters
 export const convertToMeters = (value: number, unit: Unit): number => {
@@ -48,7 +47,11 @@ export const formatWeight = (weight: number): string => {
 
 // Generate PDF report
 export const generatePDF = (pipes: PipeData[], weightUnit: WeightUnit): void => {
+  // Create a new jsPDF instance
   const doc = new jsPDF();
+  
+  // Add autoTable to jsPDF instance
+  const jspdfInstance = doc as unknown as jsPDF & { autoTable: typeof autoTable };
   
   // Title
   doc.setFontSize(20);
@@ -76,7 +79,7 @@ export const generatePDF = (pipes: PipeData[], weightUnit: WeightUnit): void => 
   });
   
   // Add table
-  (doc as any).autoTable({
+  jspdfInstance.autoTable({
     head: [["#", "Width", "Thickness", "Length", "Material", `Weight (${weightUnit})`]],
     body: tableData,
     startY: 40,
@@ -92,7 +95,7 @@ export const generatePDF = (pipes: PipeData[], weightUnit: WeightUnit): void => 
   
   // Add total weight
   const totalWeight = pipes.reduce((sum, pipe) => sum + convertWeight(pipe.weight, weightUnit), 0);
-  const finalY = (doc as any).lastAutoTable.finalY + 10;
+  const finalY = (jspdfInstance.autoTable as any).previous.finalY + 10;
   
   doc.setFontSize(12);
   doc.setTextColor(33, 33, 33);

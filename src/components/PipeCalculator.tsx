@@ -1,2 +1,4 @@
 
-export { PipeCalculator } from './calculator/PipeCalculator';
+import { PipeCalculator as Calculator } from './calculator/PipeCalculator';
+
+export const PipeCalculator = Calculator;
