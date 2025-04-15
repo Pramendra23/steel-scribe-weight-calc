@@ -1,6 +1,5 @@
 
 import { Header } from "@/components/Header";
-import { PipeCalculator } from "@/components/PipeCalculator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -19,7 +18,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <CardTitle>Square Pipe Calculator</CardTitle>
@@ -30,7 +29,7 @@ const Index = () => {
                   The Square Pipe Calculator helps you determine the weight of square pipes based on their 
                   width, thickness, length, and material. Ideal for construction and engineering projects.
                 </p>
-                <Button asChild>
+                <Button asChild className="w-full">
                   <Link to="/square-pipe">Go to Square Pipe Calculator</Link>
                 </Button>
               </CardContent>
@@ -46,16 +45,11 @@ const Index = () => {
                   The Square Tube Calculator offers advanced features including unit conversion, 
                   weight per unit length calculations, and the ability to save and share your results.
                 </p>
-                <Button asChild>
+                <Button asChild className="w-full">
                   <Link to="/square-tube">Go to Square Tube Calculator</Link>
                 </Button>
               </CardContent>
             </Card>
-          </div>
-
-          <div className="border-t pt-8">
-            <h3 className="text-xl font-bold mb-4">Default Square Pipe Calculator</h3>
-            <PipeCalculator />
           </div>
         </div>
       </main>
