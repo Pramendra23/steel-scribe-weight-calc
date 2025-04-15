@@ -1,6 +1,6 @@
 
 import { Header } from "@/components/Header";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PipeCalculator } from "@/components/PipeCalculator";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -10,47 +10,14 @@ const Index = () => {
       <Header />
       <main className="flex-grow pb-12">
         <div className="max-w-6xl mx-auto pt-8 px-4 sm:px-6">
-          <div className="mb-10 text-center">
-            <h2 className="text-3xl font-bold text-primary mb-4">Welcome to the Tube Weight Calculator</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Professional calculators for determining the weight of square tubes and pipes based on dimensions and material properties. 
-              Get precise measurements for your construction and manufacturing projects.
-            </p>
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold text-primary">Square Pipe Calculator</h2>
+            <Button asChild variant="outline">
+              <Link to="/square-tube">Switch to Tube Calculator</Link>
+            </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle>Square Pipe Calculator</CardTitle>
-                <CardDescription>Calculate the weight of square pipes with customizable dimensions and materials</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">
-                  The Square Pipe Calculator helps you determine the weight of square pipes based on their 
-                  width, thickness, length, and material. Ideal for construction and engineering projects.
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/square-pipe">Go to Square Pipe Calculator</Link>
-                </Button>
-              </CardContent>
-            </Card>
-            
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle>Square Tube Calculator</CardTitle>
-                <CardDescription>Calculate the weight of square tubes with enhanced features and unit conversions</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4">
-                  The Square Tube Calculator offers advanced features including unit conversion, 
-                  weight per unit length calculations, and the ability to save and share your results.
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/square-tube">Go to Square Tube Calculator</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+          <PipeCalculator />
         </div>
       </main>
       <footer className="text-center p-4 text-sm text-muted-foreground border-t">
