@@ -1,3 +1,4 @@
+
 import { PipeData, Unit, WeightUnit, unitConversionMap, weightConversionMap, materials } from "../types/calculator";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -50,9 +51,6 @@ export const generatePDF = (pipes: PipeData[], weightUnit: WeightUnit): void => 
   // Create a new jsPDF instance
   const doc = new jsPDF();
   
-  // Add autoTable to jsPDF instance
-  const jspdfInstance = doc as unknown as jsPDF & { autoTable: typeof autoTable };
-  
   // Title
   doc.setFontSize(20);
   doc.setTextColor(33, 33, 33);
@@ -79,7 +77,7 @@ export const generatePDF = (pipes: PipeData[], weightUnit: WeightUnit): void => 
   });
   
   // Add table
-  jspdfInstance.autoTable({
+  autoTable(doc, {
     head: [["#", "Width", "Thickness", "Length", "Material", `Weight (${weightUnit})`]],
     body: tableData,
     startY: 40,
@@ -95,7 +93,10 @@ export const generatePDF = (pipes: PipeData[], weightUnit: WeightUnit): void => 
   
   // Add total weight
   const totalWeight = pipes.reduce((sum, pipe) => sum + convertWeight(pipe.weight, weightUnit), 0);
-  const finalY = (jspdfInstance.autoTable as any).previous.finalY + 10;
+  
+  // Get the final Y position after the table
+  // @ts-ignore - Using a known property in jspdf-autotable
+  const finalY = (doc as any).lastAutoTable.finalY + 10;
   
   doc.setFontSize(12);
   doc.setTextColor(33, 33, 33);
