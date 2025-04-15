@@ -1,5 +1,5 @@
 
-export type Unit = "meters" | "cm" | "inches";
+export type Unit = "meters" | "cm" | "inches" | "ft";
 export type WeightUnit = "kg" | "lbs";
 
 export type Material = {
@@ -30,7 +30,8 @@ export const materials: Material[] = [
 export const unitConversionMap: Record<Unit, number> = {
   "meters": 1,
   "cm": 0.01,
-  "inches": 0.0254
+  "inches": 0.0254,
+  "ft": 0.3048
 };
 
 export const weightConversionMap: Record<WeightUnit, number> = {
