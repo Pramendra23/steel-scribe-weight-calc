@@ -1,8 +1,6 @@
 
 import { Header } from "@/components/Header";
 import { PipeCalculator } from "@/components/PipeCalculator";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -10,11 +8,8 @@ const Index = () => {
       <Header />
       <main className="flex-grow pb-12">
         <div className="max-w-6xl mx-auto pt-8 px-4 sm:px-6">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-primary">Square Pipe Calculator</h2>
-            <Button asChild variant="outline">
-              <Link to="/square-tube">Switch to Tube Calculator</Link>
-            </Button>
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-primary">Pipe Weight Calculator</h2>
           </div>
           
           <PipeCalculator />
@@ -27,7 +22,7 @@ const Index = () => {
             <a href="#" className="hover:text-primary transition-colors">Help / FAQ</a>
             <a href="#" className="hover:text-primary transition-colors">Contact</a>
           </div>
-          <p>© {new Date().getFullYear()} Tube Weight Calculator. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Pipe Weight Calculator. All rights reserved.</p>
         </div>
       </footer>
     </div>
