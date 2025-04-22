@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50/50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50/50 to-white dark:from-gray-900 dark:to-gray-800 font-inter">
       <Header />
       <main className="flex-grow pb-12">
         <div className="max-w-6xl mx-auto pt-8 px-4 sm:px-6">
@@ -14,8 +14,8 @@ const Index = () => {
             <h2 className="text-4xl font-bold text-primary mb-4">Square Pipe Weight Calculator</h2>
             <div className="relative rounded-xl overflow-hidden mb-6">
               <img
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1200&h=400&q=80"
-                alt="Metal pipe manufacturing"
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&h=400&q=80"
+                alt="Metal engineering workspace"
                 className="w-full h-[400px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
