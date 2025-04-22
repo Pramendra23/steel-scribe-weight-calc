@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,6 +21,11 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = "service_id"; // Replace with your actual EmailJS service ID
+const EMAILJS_TEMPLATE_ID = "template_id"; // Replace with your actual EmailJS template ID
+const EMAILJS_USER_ID = "user_id"; // Replace with your actual EmailJS user ID
 
 const sendFormWithEmailJS = async (data: FormValues) => {
   const templateParams = {
@@ -152,6 +158,7 @@ const Contact = () => {
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
+                      {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
                     </Button>
                   </form>
                 </Form>
@@ -168,7 +175,7 @@ const Contact = () => {
                 <div className="p-6 flex flex-col gap-4 justify-center items-center">
                   <h3 className="text-lg font-semibold text-gray-800 mb-2 flex gap-1 items-center">
                     <MessageSquare className="w-5 h-5 text-primary" />
-                    Let’s Connect!
+                    Let's Connect!
                   </h3>
                   <p className="text-gray-600 text-sm text-center mb-2">
                     We value your feedback and are happy to help with any queries about MetalCalc Pro.
