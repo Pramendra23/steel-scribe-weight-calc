@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Link } from "react-router-dom";
-import { MailSend, MessageSquare, Users, Settings2, Phone } from "lucide-react";
+import { Mail, Send, Users, Settings2, Phone, MessageSquare } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -22,14 +21,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-// 👇 Configure your EmailJS info here:
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_USER_ID = "YOUR_PUBLIC_KEY";
-// You MUST get these from https://dashboard.emailjs.com after following the email setup.
-
 const sendFormWithEmailJS = async (data: FormValues) => {
-  // Use EmailJS browser API
   const templateParams = {
     from_name: data.name,
     reply_to: data.email,
@@ -94,7 +86,7 @@ const Contact = () => {
             <Card className="bg-white/90 glass-morphism shadow-xl border-0">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  <MailSend className="w-6 h-6 text-primary" /> Send Us a Message
+                  <Mail className="w-6 h-6 text-primary" /> Send Us a Message
                 </h3>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -167,7 +159,6 @@ const Contact = () => {
             </Card>
             <Card className="bg-gradient-to-br from-blue-200/60 to-blue-100/40 shadow-lg border-0 flex flex-col items-center justify-center">
               <CardContent className="p-0 h-full flex flex-col justify-center">
-                {/* Modern, metal/engineering themed image */}
                 <img
                   src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80"
                   alt="Metal pipes and engineering"
