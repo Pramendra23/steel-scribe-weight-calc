@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,7 +21,6 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-// EmailJS configuration
 const EMAILJS_SERVICE_ID = "service_id"; // Replace with your actual EmailJS service ID
 const EMAILJS_TEMPLATE_ID = "template_id"; // Replace with your actual EmailJS template ID
 const EMAILJS_USER_ID = "user_id"; // Replace with your actual EmailJS user ID
@@ -167,8 +165,8 @@ const Contact = () => {
             <Card className="bg-gradient-to-br from-blue-200/60 to-blue-100/40 shadow-lg border-0 flex flex-col items-center justify-center">
               <CardContent className="p-0 h-full flex flex-col justify-center">
                 <img
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80"
-                  alt="Metal pipes and engineering"
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                  alt="Metal engineering workspace"
                   className="rounded-t-lg w-full object-cover h-56"
                   loading="lazy"
                 />
