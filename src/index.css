@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -91,7 +92,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
   }
 }
 
@@ -122,4 +123,26 @@
   .no-print {
     display: none !important;
   }
+}
+
+.font-poppins {
+  font-family: 'Poppins', Inter, system-ui, sans-serif;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(90deg, #2464f5 5%, #6aa9ff 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-morphism {
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 8px 40px 0 rgba(16,30,54,.08);
+  backdrop-filter: blur(6px);
+}
+
+input, textarea {
+  font-family: 'Poppins', Inter, system-ui, sans-serif;
+  font-size: 1rem;
 }
