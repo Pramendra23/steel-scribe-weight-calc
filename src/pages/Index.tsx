@@ -3,8 +3,13 @@ import { Header } from "@/components/Header";
 import { PipeCalculator } from "@/components/PipeCalculator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { BookOpen, Calculator, ArrowRight } from "lucide-react";
+import { blogPosts } from "@/data/blogPosts";
 
 const Index = () => {
+  // Get latest 2 blog posts for the featured section
+  const featuredPosts = blogPosts.slice(0, 2);
+  
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50/50 to-white dark:from-gray-900 dark:to-gray-800 font-poppins">
       <Header />
@@ -60,6 +65,71 @@ const Index = () => {
             <p className="text-muted-foreground">Advertisement Space</p>
           </div>
           
+          {/* Featured Blog Posts Section */}
+          <div className="mt-12 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold">Latest from Our Blog</h3>
+              <Link to="/blog" className="flex items-center text-primary hover:underline font-medium">
+                View All Articles
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {featuredPosts.map(post => (
+                <Card key={post.slug} className="border-0 shadow-md hover:shadow-lg transition-shadow overflow-hidden h-full flex flex-col">
+                  <Link to={`/blog/${post.slug}`}>
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="h-48 w-full object-cover"
+                    />
+                  </Link>
+                  <CardContent className="p-6 flex flex-col flex-grow">
+                    <span className="text-xs font-medium text-primary mb-2">
+                      {post.category}
+                    </span>
+                    <h3 className="text-xl font-bold mb-2 line-clamp-2">{post.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-2">{post.date} • {post.readTime}</p>
+                    <p className="text-muted-foreground line-clamp-3 mb-4">{post.excerpt}</p>
+                    <Link 
+                      to={`/blog/${post.slug}`}
+                      className="text-primary hover:underline mt-auto text-sm font-medium"
+                    >
+                      Read More →
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+          
+          {/* Newsletter Sign up */}
+          <Card className="border-0 shadow-lg bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-700 my-8">
+            <CardContent className="p-8">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold mb-2">Subscribe to Our Newsletter</h3>
+                  <p className="text-muted-foreground">
+                    Get the latest articles, calculators, and metal industry insights delivered to your inbox.
+                  </p>
+                </div>
+                <form className="flex flex-col sm:flex-row gap-3 flex-1">
+                  <input 
+                    type="email" 
+                    placeholder="Your email address" 
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  />
+                  <button 
+                    type="button" 
+                    className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 text-sm font-medium"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              </div>
+            </CardContent>
+          </Card>
+          
           {/* Bottom Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <Card className="border-0 shadow-lg">
@@ -100,6 +170,7 @@ const Index = () => {
           <div className="space-x-4 mb-4 sm:mb-0">
             <Link to="/about" className="hover:text-primary transition-colors">About this Tool</Link>
             <Link to="/help" className="hover:text-primary transition-colors">Help / FAQ</Link>
+            <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
             <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </div>
           <p>© {new Date().getFullYear()} MetalCalc Pro. All rights reserved.</p>

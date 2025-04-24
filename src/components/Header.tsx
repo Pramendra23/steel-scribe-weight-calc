@@ -2,13 +2,14 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { InstructionsModal } from "./InstructionsModal";
 import { Button } from "./ui/button";
-import { Home } from "lucide-react";
+import { Home, BookOpen } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Separator } from "./ui/separator";
 
 export function Header() {
   const location = useLocation();
   const isOnTubePage = location.pathname === '/square-tube';
+  const isOnBlogPage = location.pathname.includes('/blog');
 
   return (
     <header className="w-full py-4 px-4 sm:px-6 flex flex-wrap justify-between items-center border-b gap-4">
@@ -28,6 +29,12 @@ export function Header() {
         </Button>
         <Button variant={isOnTubePage ? "default" : "outline"} asChild>
           <Link to="/square-tube">Square Tube Calculator</Link>
+        </Button>
+        <Button variant={isOnBlogPage ? "default" : "outline"} asChild>
+          <Link to="/blog">
+            <BookOpen className="h-4 w-4 mr-1" />
+            Blog
+          </Link>
         </Button>
       </div>
       
