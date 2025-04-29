@@ -2,9 +2,10 @@
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Avatar } from "lucide-react";
+import { User } from "lucide-react"; // Changed from Avatar to User which exists in lucide-react
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"; // Import Avatar from shadcn/ui library
 
 interface Comment {
   id: number;
@@ -139,12 +140,11 @@ export function BlogComments({ postSlug }: BlogCommentsProps) {
             <Card key={comment.id} className="border-0 shadow-sm">
               <CardContent className="p-4">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-primary/10 rounded-full p-2 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                  </div>
+                  <Avatar className="h-10 w-10 bg-primary/10 text-primary">
+                    <AvatarFallback>
+                      <User className="h-5 w-5" />
+                    </AvatarFallback>
+                  </Avatar>
                   <div className="flex-1">
                     <div className="flex justify-between">
                       <h4 className="font-medium">{comment.name}</h4>
