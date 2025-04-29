@@ -53,6 +53,69 @@ const Index = () => {
             </Card>
           </div>
           
+          {/* Our Tools Section - Added Shree Lipi Converter */}
+          <div className="mt-8 mb-12">
+            <h3 className="text-2xl font-bold mb-6">Our Tools</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="border-0 shadow-md hover:shadow-lg transition-all">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="bg-primary/10 text-primary p-3 rounded-full w-fit mb-4">
+                    <Calculator className="h-6 w-6" />
+                  </div>
+                  <h4 className="text-xl font-semibold mb-2">Square Pipe Calculator</h4>
+                  <p className="text-muted-foreground mb-4 flex-grow">
+                    Calculate the weight of square pipes based on dimensions, material, and length.
+                  </p>
+                  <Link 
+                    to="/square-pipe" 
+                    className="text-primary hover:underline font-medium inline-flex items-center"
+                  >
+                    Try this tool
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-md hover:shadow-lg transition-all">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="bg-primary/10 text-primary p-3 rounded-full w-fit mb-4">
+                    <Calculator className="h-6 w-6" />
+                  </div>
+                  <h4 className="text-xl font-semibold mb-2">Square Tube Calculator</h4>
+                  <p className="text-muted-foreground mb-4 flex-grow">
+                    Determine the weight of hollow square tubes with customizable material properties.
+                  </p>
+                  <Link 
+                    to="/square-tube" 
+                    className="text-primary hover:underline font-medium inline-flex items-center"
+                  >
+                    Try this tool
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-md hover:shadow-lg transition-all">
+                <CardContent className="p-6 flex flex-col h-full">
+                  <div className="bg-primary/10 text-primary p-3 rounded-full w-fit mb-4">
+                    <BookOpen className="h-6 w-6" />
+                  </div>
+                  <h4 className="text-xl font-semibold mb-2">Shree Lipi Converter</h4>
+                  <p className="text-muted-foreground mb-4 flex-grow">
+                    Convert text between Shree Lipi, Unicode and other Indian language fonts.
+                  </p>
+                  <Link 
+                    to="/shree-lipi-converter" 
+                    className="text-primary hover:underline font-medium inline-flex items-center"
+                  >
+                    Try this tool
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+          
           {/* Top AdSense Placement */}
           <div className="w-full h-[250px] bg-white dark:bg-gray-800 mb-8 flex items-center justify-center border rounded-lg shadow-lg">
             <p className="text-muted-foreground">Advertisement Space</p>
