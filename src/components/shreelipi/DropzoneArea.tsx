@@ -106,6 +106,7 @@ export function DropzoneArea({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              // Explicitly cast the element to HTMLInputElement to fix the TypeScript error
               const input = document.querySelector('input[type="file"]') as HTMLInputElement;
               if (input) {
                 input.click();
