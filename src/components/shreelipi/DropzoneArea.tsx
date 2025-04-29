@@ -106,7 +106,8 @@ export function DropzoneArea({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              const input = document.querySelector('input[type="file"]');
+              // Fix: Use HTMLInputElement type for the input element
+              const input = document.querySelector('input[type="file"]') as HTMLInputElement;
               if (input) {
                 input.click();
               }

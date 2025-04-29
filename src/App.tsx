@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import SquareTubeCalculator from "./pages/SquareTubeCalculator";
 import SquarePipeCalculator from "./pages/SquarePipeCalculator";
-import ShreeLipiConverter from "./pages/ShreeLipiConverter"; // Added new import
+import ShreeLipiConverter from "./pages/ShreeLipiConverter"; 
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Help from "./pages/Help";
@@ -27,7 +27,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/square-tube" element={<SquareTubeCalculator />} />
           <Route path="/square-pipe" element={<SquarePipeCalculator />} />
-          <Route path="/shree-lipi-converter" element={<ShreeLipiConverter />} /> {/* Added new route */}
+          <Route path="/shree-lipi-converter" element={<ShreeLipiConverter />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/about" element={<About />} />
