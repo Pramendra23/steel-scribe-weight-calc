@@ -32,7 +32,7 @@ const shreeLipiToUnicodeMap: Record<string, string> = {
   'N': 'ण',
   't': 'त',
   'th': 'थ',
-  'dh': 'ध', // This is a duplicate key with 'D' above - both map to 'ध'
+  'dh': 'ढ', // Changed from 'ध' to 'ढ' to avoid duplicate mapping
   'n': 'न',
   'p': 'प',
   'P': 'फ',
@@ -84,7 +84,7 @@ const unicodeToShreeLipiMap: Record<string, string> = {
   'ट': 'T',
   'ठ': 'Th',
   'द': 'd',
-  'ध': 'D', // Fixed: removed the duplicate entry for 'ध'
+  'ध': 'D', // Keep only one mapping for 'ध'
   'ण': 'N',
   'त': 't',
   'थ': 'th',
@@ -102,6 +102,7 @@ const unicodeToShreeLipiMap: Record<string, string> = {
   'ष': 'Sh',
   'स': 's',
   'ह': 'h',
+  'ढ': 'dh', // Added mapping for 'ढ'
   
   '।': '.',
   'ॐ': 'OM',
