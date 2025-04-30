@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState, useEffect } from "react";
 
 interface FontSelectorProps {
   value: string;
@@ -27,17 +28,33 @@ export function FontSelector({
     { value: "devlys", label: "Devlys" },
     { value: "mangal", label: "Mangal" },
   ];
+  
+  // Force update state if initial value doesn't match any option
+  const [internalValue, setInternalValue] = useState(value);
+  
+  useEffect(() => {
+    // Make sure the selected font is valid
+    const isValidFont = fonts.some(font => font.value === value);
+    if (!isValidFont && fonts.length > 0) {
+      // If value is not valid, set it to the first available font
+      onChange(fonts[0].value);
+    }
+    setInternalValue(value);
+  }, [value, onChange, fonts]);
 
   return (
     <Select
-      value={value}
-      onValueChange={onChange}
+      value={internalValue}
+      onValueChange={(newValue) => {
+        setInternalValue(newValue);
+        onChange(newValue);
+      }}
       disabled={disabled}
     >
-      <SelectTrigger>
+      <SelectTrigger className="w-full bg-white dark:bg-gray-800">
         <SelectValue placeholder="Select font" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-white dark:bg-gray-800">
         {fonts.map((font) => (
           <SelectItem
             key={font.value}
