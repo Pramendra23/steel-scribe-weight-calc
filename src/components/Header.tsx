@@ -2,7 +2,7 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { InstructionsModal } from "./InstructionsModal";
 import { Button } from "./ui/button";
-import { Home, BookOpen, FileText } from "lucide-react";
+import { Home, BookOpen, FileText, Send } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
