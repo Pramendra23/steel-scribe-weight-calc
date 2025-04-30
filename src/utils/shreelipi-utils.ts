@@ -1,4 +1,3 @@
-
 /**
  * Utility functions for Shree Lipi to Unicode conversion and vice versa.
  */
@@ -33,7 +32,7 @@ const shreeLipiToUnicodeMap: Record<string, string> = {
   'N': 'ण',
   't': 'त',
   'th': 'थ',
-  'dh': 'ध',
+  'dh': 'ध', // This is a duplicate key with 'D' above - both map to 'ध'
   'n': 'न',
   'p': 'प',
   'P': 'फ',
@@ -85,11 +84,10 @@ const unicodeToShreeLipiMap: Record<string, string> = {
   'ट': 'T',
   'ठ': 'Th',
   'द': 'd',
-  'ध': 'D',
+  'ध': 'D', // Fixed: removed the duplicate entry for 'ध'
   'ण': 'N',
   'त': 't',
   'थ': 'th',
-  'ध': 'dh',
   'न': 'n',
   'प': 'p',
   'फ': 'P',
