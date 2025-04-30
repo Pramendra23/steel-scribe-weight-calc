@@ -10,7 +10,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Link } from "react-router-dom";
-import { Mail, MessageSquare, Users, Settings2, Phone } from "lucide-react";
+import { Mail, MessageSquare, Users, Settings2, Phone, Send } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
