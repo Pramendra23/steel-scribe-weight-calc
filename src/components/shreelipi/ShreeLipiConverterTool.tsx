@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
@@ -31,6 +30,17 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
   
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
+
+  // Set initial fonts based on conversion mode
+  useEffect(() => {
+    if (conversionMode === "shreelipi-to-unicode") {
+      setSourceFont("shreelipi");
+      setTargetFont("unicode");
+    } else if (conversionMode === "unicode-to-shreelipi") {
+      setSourceFont("unicode");
+      setTargetFont("shreelipi");
+    }
+  }, [conversionMode]);
   
   // Handle real-time conversion as user types
   useEffect(() => {
@@ -81,7 +91,7 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
     }
   }, []);
 
-  // Convert text based on selected mode
+  // Convert text based on selected mode and fonts
   const handleConvert = () => {
     if (!inputText) return;
     
@@ -247,6 +257,10 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
             handleConvert={handleConvert}
             handleClearAll={handleClearAll}
             handleFilesAdded={handleFilesAdded}
+            sourceFont={sourceFont}
+            setSourceFont={setSourceFont}
+            targetFont={targetFont}
+            setTargetFont={setTargetFont}
           />
         );
     }
