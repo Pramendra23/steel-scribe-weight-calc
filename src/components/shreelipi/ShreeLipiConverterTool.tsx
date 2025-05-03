@@ -68,7 +68,7 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
         });
       }
     }
-  }, [inputText, conversionMode]);
+  }, [inputText, conversionMode, sourceFont]);
 
   // Handle file uploads
   const handleFilesAdded = useCallback((files: File[]) => {
@@ -92,23 +92,33 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
   }, []);
 
   // Convert text based on selected mode and fonts
-  const handleConvert = () => {
+  const handleConvert = useCallback(() => {
     if (!inputText) return;
     
     setIsConverting(true);
+    console.log("Starting conversion with:", {
+      inputText,
+      sourceFont,
+      targetFont,
+      conversionMode
+    });
     
     try {
       let result = "";
       
       if (sourceFont === "shreelipi" && targetFont === "unicode") {
+        console.log("Converting Shree Lipi to Unicode");
         result = convertShreeLipiToUnicode(inputText);
       } else if (sourceFont === "unicode" && targetFont === "shreelipi") {
+        console.log("Converting Unicode to Shree Lipi");
         result = convertUnicodeToShreelipi(inputText);
       } else {
         // Use the general conversion function for other combinations
+        console.log(`Converting from ${sourceFont} to ${targetFont}`);
         result = convertBetweenFonts(inputText, sourceFont, targetFont);
       }
       
+      console.log("Conversion completed:", result);
       setOutputText(result);
     } catch (error) {
       console.error("Conversion error:", error);
@@ -121,7 +131,7 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
     } finally {
       setIsConverting(false);
     }
-  };
+  }, [inputText, sourceFont, targetFont, toast]);
 
   // Read file content as text
   const readFileAsText = (file: File): Promise<string> => {
