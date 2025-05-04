@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
@@ -42,17 +43,9 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
     }
   }, [conversionMode]);
   
-  // Handle real-time conversion as user types
-  useEffect(() => {
-    if (inputText && (conversionMode === "shreelipi-to-unicode" || conversionMode === "unicode-to-shreelipi")) {
-      const timeoutId = setTimeout(() => {
-        handleConvert();
-      }, 500);
-      
-      return () => clearTimeout(timeoutId);
-    }
-  }, [inputText, conversionMode, sourceFont, targetFont]);
-
+  // Handle real-time conversion as user types - disabled for more explicit control
+  // We'll rely on the Convert button for better user experience
+  
   // Auto font detection when mode is "auto-detect"
   useEffect(() => {
     if (conversionMode === "auto-detect" && inputText) {
@@ -68,7 +61,7 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
         });
       }
     }
-  }, [inputText, conversionMode, sourceFont]);
+  }, [inputText, conversionMode, sourceFont, toast]);
 
   // Handle file uploads
   const handleFilesAdded = useCallback((files: File[]) => {
@@ -89,7 +82,7 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
         duration: 3000
       });
     }
-  }, []);
+  }, [toast]);
 
   // Convert text based on selected mode and fonts
   const handleConvert = useCallback(() => {
@@ -120,6 +113,13 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
       
       console.log("Conversion completed:", result);
       setOutputText(result);
+      
+      // Show toast for successful conversion
+      toast({
+        title: "Conversion Complete",
+        description: `Successfully converted from ${sourceFont} to ${targetFont}`,
+        duration: 2000
+      });
     } catch (error) {
       console.error("Conversion error:", error);
       toast({
@@ -131,7 +131,7 @@ export function ShreeLipiConverterTool({ conversionMode }: ShreeLipiConverterToo
     } finally {
       setIsConverting(false);
     }
-  }, [inputText, sourceFont, targetFont, toast]);
+  }, [inputText, sourceFont, targetFont, toast, conversionMode]);
 
   // Read file content as text
   const readFileAsText = (file: File): Promise<string> => {

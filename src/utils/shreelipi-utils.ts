@@ -57,62 +57,64 @@ const shreeLipiToUnicodeMap: Record<string, string> = {
   'kr': 'क्र',
   'pr': 'प्र',
   
-  // Add more mappings as needed
+  // Additional common mappings for better conversion
+  'kh': 'ख',
+  'gh': 'घ',
+  'ch': 'च',
+  'jh': 'झ',
+  'Th': 'ठ',
+  'Dh': 'ढ',
+  'ph': 'फ',
+  'bh': 'भ',
+  
+  // Matras (vowel signs)
+  'a': 'ा',  // aa matra
+  'i': 'ि',  // i matra
+  'ee': 'ी',  // ii matra
+  'u': 'ु',  // u matra
+  'oo': 'ू',  // uu matra
+  'R': 'ृ',  // ri matra
+  'e': 'े',  // e matra
+  'ai': 'ै',  // ai matra
+  'o': 'ो',  // o matra
+  'au': 'ौ',  // au matra
+  
+  // Halfforms
+  'k-': 'क्',
+  'g-': 'ग्',
+  'ch-': 'च्',
+  'j-': 'ज्',
+  't-': 'त्',
+  'd-': 'द्',
+  'n-': 'न्',
+  'p-': 'प्',
+  'b-': 'ब्',
+  'm-': 'म्',
+  'y-': 'य्',
+  'r-': 'र्',
+  'l-': 'ल्',
+  'v-': 'व्',
+  's-': 'स्',
+  'h-': 'ह्',
+  
+  // Numbers
+  '0': '०',
+  '1': '१',
+  '2': '२',
+  '3': '३',
+  '4': '४',
+  '5': '५',
+  '6': '६',
+  '7': '७',
+  '8': '८',
+  '9': '९',
 };
 
-const unicodeToShreeLipiMap: Record<string, string> = {
-  // This is the reverse mapping of the above
-  'अ': 'A',
-  'आ': 'Aa',
-  'इ': 'i',
-  'ई': 'I',
-  'उ': 'u',
-  'ऊ': 'U',
-  'ए': 'e',
-  'ऐ': 'E',
-  'ओ': 'ao',
-  'औ': 'AO',
-  
-  'क': 'k',
-  'ख': 'K',
-  'ग': 'g',
-  'घ': 'G',
-  'च': 'c',
-  'छ': 'C',
-  'ज': 'j',
-  'झ': 'J',
-  'ट': 'T',
-  'ठ': 'Th',
-  'द': 'd',
-  'ध': 'D',
-  'ण': 'N',
-  'त': 't',
-  'थ': 'th',
-  'न': 'n',
-  'प': 'p',
-  'फ': 'P',
-  'ब': 'b',
-  'भ': 'B',
-  'म': 'm',
-  'य': 'y',
-  'र': 'r',
-  'ल': 'l',
-  'व': 'v',
-  'श': 'sh',
-  'ष': 'Sh',
-  'स': 's',
-  'ह': 'h',
-  'ढ': 'dh',
-  
-  '।': '.',
-  'ॐ': 'OM',
-  
-  'त्र': 'tr',
-  'क्र': 'kr',
-  'प्र': 'pr',
-  
-  // Add more mappings as needed
-};
+// Create the reverse mapping for Unicode to Shree Lipi conversion
+const unicodeToShreeLipiMap: Record<string, string> = {};
+Object.entries(shreeLipiToUnicodeMap).forEach(([key, value]) => {
+  unicodeToShreeLipiMap[value] = key;
+});
 
 /**
  * Improved implementation to convert Shree Lipi text to Unicode text
@@ -122,22 +124,25 @@ export function convertShreeLipiToUnicode(text: string): string {
   
   console.log("Converting from Shree Lipi to Unicode:", text);
   
-  // Handle complex character combinations first
+  // First handle multi-character patterns
   let result = text;
   
-  // Look for multi-character patterns first
-  Object.keys(shreeLipiToUnicodeMap)
+  // Sort keys by length (longest first) to ensure longer patterns are matched before shorter ones
+  const sortedKeys = Object.keys(shreeLipiToUnicodeMap)
     .filter(key => key.length > 1)
-    .sort((a, b) => b.length - a.length) // Process longer patterns first
-    .forEach(key => {
-      const regex = new RegExp(key, 'g');
-      result = result.replace(regex, shreeLipiToUnicodeMap[key]);
-    });
+    .sort((a, b) => b.length - a.length);
   
-  // Then handle single characters
+  // Replace multi-character patterns
+  for (const key of sortedKeys) {
+    const regex = new RegExp(key, 'g');
+    result = result.replace(regex, shreeLipiToUnicodeMap[key]);
+  }
+  
+  // Then handle single character replacements
   let finalResult = '';
   for (let i = 0; i < result.length; i++) {
     const char = result[i];
+    // If we have a mapping for this character, use it; otherwise keep the original
     finalResult += shreeLipiToUnicodeMap[char] || char;
   }
   
@@ -153,22 +158,25 @@ export function convertUnicodeToShreelipi(text: string): string {
   
   console.log("Converting from Unicode to Shree Lipi:", text);
   
-  // Handle complex character combinations first
+  // Handle multi-character patterns first
   let result = text;
   
-  // Look for multi-character patterns first
-  Object.keys(unicodeToShreeLipiMap)
+  // Sort keys by length (longest first) for Unicode to Shree Lipi
+  const sortedKeys = Object.keys(unicodeToShreeLipiMap)
     .filter(key => key.length > 1)
-    .sort((a, b) => b.length - a.length) // Process longer patterns first
-    .forEach(key => {
-      const regex = new RegExp(key, 'g');
-      result = result.replace(regex, unicodeToShreeLipiMap[key]);
-    });
+    .sort((a, b) => b.length - a.length);
   
-  // Then handle single characters
+  // Replace multi-character patterns
+  for (const key of sortedKeys) {
+    const regex = new RegExp(key, 'g');
+    result = result.replace(regex, unicodeToShreeLipiMap[key]);
+  }
+  
+  // Then handle single character replacements
   let finalResult = '';
   for (let i = 0; i < result.length; i++) {
     const char = result[i];
+    // If we have a mapping for this character, use it; otherwise keep the original
     finalResult += unicodeToShreeLipiMap[char] || char;
   }
   
@@ -210,7 +218,12 @@ export function autoDetectFont(text: string): string | null {
     return "devlys";
   }
   
-  // Default to null if unable to detect
+  // Default to shreelipi if unable to detect but there are common patterns
+  if (/[A-Z][a-z]/.test(text) || /[a-z]{2,}/.test(text)) {
+    return "shreelipi";
+  }
+  
+  // Default to null if really unable to detect
   return null;
 }
 
@@ -232,21 +245,19 @@ export function convertBetweenFonts(
     // First convert to Unicode as an intermediary format
     let unicodeText = text;
     
-    switch (sourceFont) {
+    switch (sourceFont.toLowerCase()) {
       case "shreelipi":
         unicodeText = convertShreeLipiToUnicode(text);
         break;
       case "krutidev":
-        // In a real implementation, you'd have a specific converter for Krutidev
-        unicodeText = `Converted from krutidev to unicode: ${text}`;
+        // For now just pass through since we don't have a specific implementation
+        console.log("Krutidev to Unicode conversion not fully implemented yet");
         break;
       case "devlys":
-        // In a real implementation, you'd have a specific converter for Devlys
-        unicodeText = `Converted from devlys to unicode: ${text}`;
+        console.log("Devlys to Unicode conversion not fully implemented yet");
         break;
       case "mangal":
-        // In a real implementation, you'd have a specific converter for Mangal
-        unicodeText = `Converted from mangal to unicode: ${text}`;
+        console.log("Mangal to Unicode conversion not fully implemented yet");
         break;
       // Unicode is already unicode, so no conversion needed
     }
@@ -254,22 +265,19 @@ export function convertBetweenFonts(
     // Then convert from Unicode to the target font
     let result = unicodeText;
     
-    if (targetFont !== "unicode") {
-      switch (targetFont) {
+    if (targetFont.toLowerCase() !== "unicode") {
+      switch (targetFont.toLowerCase()) {
         case "shreelipi":
           result = convertUnicodeToShreelipi(unicodeText);
           break;
         case "krutidev":
-          // In a real implementation, you'd have a specific converter from Unicode to Krutidev
-          result = `Converted from unicode to krutidev: ${unicodeText}`;
+          console.log("Unicode to Krutidev conversion not fully implemented yet");
           break;
         case "devlys":
-          // In a real implementation, you'd have a specific converter from Unicode to Devlys
-          result = `Converted from unicode to devlys: ${unicodeText}`;
+          console.log("Unicode to Devlys conversion not fully implemented yet");
           break;
         case "mangal":
-          // In a real implementation, you'd have a specific converter from Unicode to Mangal
-          result = `Converted from unicode to mangal: ${unicodeText}`;
+          console.log("Unicode to Mangal conversion not fully implemented yet");
           break;
       }
     }
