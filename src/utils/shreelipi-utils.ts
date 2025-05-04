@@ -7,11 +7,11 @@ const shreeLipiToUnicodeMap: Record<string, string> = {
   // Vowels
   'A': 'अ',
   'Aa': 'आ',
-  'i': 'इ',
+  'i_vowel': 'इ',
   'I': 'ई',
-  'u': 'उ',
+  'u_vowel': 'उ',
   'U': 'ऊ',
-  'e': 'ए',
+  'e_vowel': 'ए',
   'E': 'ऐ',
   'ao': 'ओ',
   'AO': 'औ',
@@ -62,19 +62,19 @@ const shreeLipiToUnicodeMap: Record<string, string> = {
   'gh': 'घ',
   'ch': 'च',
   'jh': 'झ',
-  'Th': 'ठ',
+  'Th_con': 'ठ',  // Renamed to avoid duplicate
   'Dh': 'ढ',
   'ph': 'फ',
   'bh': 'भ',
   
   // Matras (vowel signs)
-  'a': 'ा',  // aa matra
-  'i': 'ि',  // i matra
+  'a_matra': 'ा',  // aa matra (renamed from 'a')
+  'i_matra': 'ि',  // i matra (renamed from 'i')
   'ee': 'ी',  // ii matra
-  'u': 'ु',  // u matra
+  'u_matra': 'ु',  // u matra (renamed from 'u')
   'oo': 'ू',  // uu matra
   'R': 'ृ',  // ri matra
-  'e': 'े',  // e matra
+  'e_matra': 'े',  // e matra (renamed from 'e')
   'ai': 'ै',  // ai matra
   'o': 'ो',  // o matra
   'au': 'ौ',  // au matra
